@@ -1,51 +1,55 @@
-# Hubot Voting Script
+# hubot-voting
 
-Vote using [Hubot](http://github.com/github/hubot)
+To vote on topics
+
+See [`src/hubot-voting.coffee`](src/hubot-voting.coffee) for full documentation.
 
 ## Installation
 
-Run the npm install command...
+In hubot project repo, run:
 
-    npm install hubot-voting
+`npm install hubot-voting --save`
 
-Add the script to the `external-scripts.json` file
+Then add **hubot-voting** to your `external-scripts.json`:
 
-    ["hubot-voting"]
+```json
+["hubot-voting"]
+```
 
-## Usage
+## Sample Interaction
 
 ### Start a vote
 
-    hubot start vote first item, second item, third item
+    `hubot start vote first item, second item, third item`
 
 ### Vote
 
-    hubot vote for first item
+    `hubot vote for first item`
 
 or...
 
-    hubot vote for 1
+    `hubot vote for 1`
 
 or...
 
-    hubot vote first item
+    `hubot vote first item`
 
 or...
 
-    hubot vote 1
+    `hubot vote 1`
 
 ### Show choices
 
-    hubot show choices
+    `hubot show choices`
 
 ### Show votes
 
-    hubot show votes
+    `hubot show votes`
 
 ### End a vote
 
-    hubot end vote
+    `hubot end vote`
 
 ## License
 
-MIT licensed. Copyight 2014 Joshua Antonishen.
+MIT licensed. Copyight 2014 Joshua Antonishen + 2015 Hector Leiva

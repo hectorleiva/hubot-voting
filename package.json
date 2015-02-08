@@ -1,21 +1,36 @@
 {
-  "author": "joshingly",
   "name": "hubot-voting",
-  "version": "1.0.0",
-  "description": "A voting script for hubot",
-  "main": "./src/index.coffee",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/joshingly/hubot-voting.git"
-  },
+  "description": "To vote on topics",
+  "version": "0.0.0",
+  "author": "Hector Leiva <hector@hectorleiva.com>",
   "license": "MIT",
   "keywords": [
-    "hubot",
-    "voting",
-    "vote"
+    "hubot-voting",
+    "voting"
   ],
-  "bugs": {
-    "url": "https://github.com/joshingly/hubot-voting/issues"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hubot-scripts/hubot-hubot-voting.git"
   },
-  "homepage": "https://github.com/joshingly/hubot-voting"
+  "bugs": {
+    "url": "https://github.com/hubot-scripts/hubot-hubot-voting/issues"
+  },
+  "dependencies": {
+    "coffee-script": "~1.6"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-mocha-test": "~0.7.0",
+    "grunt-release": "~0.6.0",
+    "hubot": "^2.11.0",
+    "hubot-mock-adapter": "^1.0.0",
+    "matchdep": "~0.1.2",
+    "mocha": "*",
+    "nock": "^0.59.1"
+  },
+  "main": "index.coffee",
+  "scripts": {
+    "test": "grunt test"
+  }
 }

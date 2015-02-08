@@ -1,10 +1,7 @@
 # Description
-#   Vote on stuff!
+#   To vote on topics
 #
 # Dependencies:
-#   None
-#
-# Configuration:
 #   None
 #
 # Commands:
@@ -15,10 +12,11 @@
 #   hubot end vote
 #
 # Notes:
-#   None
+#   <optional notes required for the script>
 #
 # Author:
-#   antonishen
+#   antonishen [joshua@antonishen.com]
+#   Hector Leiva [hector@hectorleiva.com]
 
 module.exports = (robot) ->
   robot.voting = {}
@@ -31,8 +29,6 @@ module.exports = (robot) ->
     else
       robot.voting.votes = {}
       createChoices msg.match[1]
-
-      msg.send "Vote started"
       sendChoices(msg)
 
   robot.respond /end vote/i, (msg) ->
@@ -85,7 +81,7 @@ module.exports = (robot) ->
   sendChoices = (msg, results = null) ->
 
     if robot.voting.choices?
-      response = ""
+      response = "Vote started \n"
       for choice, index in robot.voting.choices
         response += "#{index}: #{choice}"
         if results?
