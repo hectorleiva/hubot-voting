@@ -23,6 +23,10 @@ module.exports = (robot) ->
 
   robot.respond /start vote (.+)$/i, (msg) ->
 
+    # Assign the starter of the vote
+    if !robot.voting.starter
+      robot.voting.starter = robot.brain.usersForFuzzyName(msg.message.user['name'])[0].name
+
     if robot.voting.votes?
       msg.send "A vote is already underway"
       sendChoices (msg)
@@ -32,22 +36,15 @@ module.exports = (robot) ->
       sendChoices(msg)
 
   robot.respond /end vote/i, (msg) ->
-    if robot.voting.votes?
-      console.log robot.voting.votes
 
-      results = tallyVotes()
-
-      response = "The results are..."
-      for choice, index in robot.voting.choices
-        response += "\n#{choice}: #{results[index]}"
-
-      msg.send response
-
-      delete robot.voting.votes
-      delete robot.voting.choices
+    if robot.voting.starter?
+      if robot.voting.starter == robot.brain.usersForFuzzyName(msg.message.user['name'])[0].name
+        endVoting()
+      else
+        msg.reply "You can not end the vote, only " + robot.voting.starter + " can end the vote."
+        return
     else
-      msg.send "There is not a vote to end"
-
+      msg.send "Voting has not been started"
 
   robot.respond /show choices/i, (msg) ->
     sendChoices(msg)
@@ -95,6 +92,20 @@ module.exports = (robot) ->
   validChoice = (choice) ->
     numChoices = robot.voting.choices.length - 1
     0 <= choice <= numChoices
+
+  endVoting = () ->
+    console.log robot.voting.votes
+
+    results = tallyVotes()
+
+    response = "The results are..."
+    for choice, index in robot.voting.choices
+      response += "\n#{choice}: #{results[index]}"
+
+    msg.send response
+
+    delete robot.voting.votes
+    delete robot.voting.choices
 
   tallyVotes = () ->
     results = (0 for choice in robot.voting.choices)
