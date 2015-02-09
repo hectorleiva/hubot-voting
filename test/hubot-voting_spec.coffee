@@ -47,7 +47,7 @@ describe 'hubot-voting', ->
       expect(robot.helpCommands()).to.have.length 5
       do done
 
-  describe 'successful respond listeners', ->
+  describe 'successful responds', ->
     it 'should start a single poll', (done) ->
       adapter.on 'send', (envelope, strings) ->
         try
@@ -71,3 +71,14 @@ describe 'hubot-voting', ->
         catch e
           done e
       adapter.receive new TextMessage user, 'hubot start vote test1, test2'
+
+    # it 'should respond back that voting is already working', (done) ->
+    #   adapter.on 'send', (envelope, strings) ->
+    #     try
+    #       expect(envelope.user.id).to.equal '1'
+    #       expect(envelope.user.name).to.equal 'testuser'
+    #       expect(envelope.user.room).to.equal '#mocha'
+    #       expect(strings[0]).to.equal "A vote is already underway"
+    #     catch e
+    #       done e
+    #   adapter.receive new TextMessage user, 'hubot start vote test1'
