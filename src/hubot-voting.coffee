@@ -23,23 +23,23 @@ module.exports = (robot) ->
 
   robot.respond /start vote (.+)$/i, (msg) ->
 
-    # Assign the starter of the vote
-    if !robot.voting.starter
-      robot.voting.starter = robot.brain.usersForFuzzyName(msg.message.user['name'])[0].name
-
     if robot.voting.votes?
       msg.send "A vote is already underway"
       sendChoices (msg)
     else
+      # Reset all the votes
       robot.voting.votes = {}
+      # Assign the starter of the vote
+      robot.voting.starter = robot.brain.usersForFuzzyName(msg.message.user['name'])[0].name
+      # Create the voting choices
       createChoices msg.match[1]
       sendChoices(msg)
 
   robot.respond /end vote/i, (msg) ->
 
-    if robot.voting.starter?
+    if robot.voting.votes?
       if robot.voting.starter == robot.brain.usersForFuzzyName(msg.message.user['name'])[0].name
-        endVoting()
+        endVoting(msg)
       else
         msg.reply "You can not end the vote, only " + robot.voting.starter + " can end the vote."
         return
@@ -93,7 +93,7 @@ module.exports = (robot) ->
     numChoices = robot.voting.choices.length - 1
     0 <= choice <= numChoices
 
-  endVoting = () ->
+  endVoting = (msg) ->
     console.log robot.voting.votes
 
     results = tallyVotes()
@@ -104,7 +104,9 @@ module.exports = (robot) ->
 
     msg.send response
 
+    # Reset all the options
     delete robot.voting.votes
+    delete robot.voting.starter
     delete robot.voting.choices
 
   tallyVotes = () ->
