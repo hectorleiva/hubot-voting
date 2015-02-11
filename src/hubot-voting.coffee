@@ -5,11 +5,11 @@
 #   None
 #
 # Commands:
-#   hubot start vote/voting item1, item2, item3, ...
-#   hubot vote/voting for N - where N is the choice number or the choice name
-#   hubot show vote/voting choices
-#   hubot show votes/voting - shows current votes
-#   hubot end vote/voting
+#   hubot start vote item1, item2, item3, ...
+#   hubot vote for N - where N is the choice number or the choice name
+#   hubot show vote choices
+#   hubot show votes - shows current votes
+#   hubot end vote
 #
 # Author:
 #   antonishen [joshua@antonishen.com]
