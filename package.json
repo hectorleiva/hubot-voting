@@ -1,7 +1,7 @@
 {
   "name": "hubot-voting",
   "description": "To vote on topics",
-  "version": null,
+  "version": "1.2.0",
   "author": "joshingly",
   "contributors": [
     {
