@@ -1,12 +1,14 @@
 {
   "name": "hubot-voting",
   "description": "To vote on topics",
-  "version": "1.1.0",
+  "version": null,
   "author": "joshingly",
-  "contributors": [{
-    "name": "Hector Leiva",
-    "email": "hector@hectorleiva.com"
-  }],
+  "contributors": [
+    {
+      "name": "Hector Leiva",
+      "email": "hector@hectorleiva.com"
+    }
+  ],
   "license": "MIT",
   "keywords": [
     "hubot-voting",
